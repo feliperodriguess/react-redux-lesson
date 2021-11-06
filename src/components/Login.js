@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { Button, Form, Row, Col } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
-import { changeUser } from '../redux/userSlice';
+import { updateUser } from '../store/user/userSlice';
 
 const Login = () => {
   const [name, setName] = useState('');
   const dispatch = useDispatch();
 
-  const handleLogin = () => {
-    dispatch(changeUser(name))
+  const handleLogin = async () => {
+    dispatch(await updateUser(name))
   }
 
   return (

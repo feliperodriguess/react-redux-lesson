@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
-import { logout } from '../redux/userSlice';
+import { logout } from '../store/user/userSlice';
 
 const Logout = () => {
   const dispatch = useDispatch()
