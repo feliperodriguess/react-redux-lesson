@@ -1,24 +1,26 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { AppDispatch, AppThunk } from '..'
 
+const initialUserState = {
+  name: '',
+  location: '',
+  followers: 0,
+  following: 0,
+  repos: 0,
+  email: '',
+  avatar_url: '',
+  isLogged: false
+}
 
 export const slice = createSlice({
   name: 'user',
-  initialState: {
-    name: '',
-    location:'',
-    followers:0,
-    following: 0,
-    repos: 0,
-    email: '',
-    isLogged: false,
-  },
+  initialState: initialUserState,
   reducers: {
     changeUser(state, { payload }) {
       return { ...state, isLogged: true, ...payload }
     },
     logout(state) {
-      return { ...state, isLogged: false, name: '' }
+      return { ...state, ...initialUserState }
     }
   }
 })
@@ -29,13 +31,20 @@ export default slice.reducer
 export const updateUser = async (name: string): Promise<AppThunk> => {
   return (async (dispatch: AppDispatch) => {
     try {
-      const data = await fetch(`https://api.github.com/users/${name}`)
-      const dataJSON = await data.json()
-      dispatch(changeUser(dataJSON))
+      const response = await fetch(`https://api.github.com/users/${name}`)
+      if (response.ok) {
+        const responseJSON = await response.json()
+        dispatch(changeUser(responseJSON))
+        return response.status
+      }
+      else {
+        dispatch(changeUser(initialUserState))
+        return response.status
+      }
     }
-    catch(e){
-      console.log(e)
+    catch (error) {
+      dispatch(changeUser(initialUserState))
+      return 0
     }
-
   })
 }

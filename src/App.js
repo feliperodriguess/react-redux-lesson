@@ -1,6 +1,5 @@
 import { Container } from "react-bootstrap";
-import Login from "./components/Login";
-import Logout from "./components/Logout";
+import { InfoLog } from "./components/InfoLog";
 import User from "./components/User";
 
 function App() {
@@ -8,11 +7,10 @@ function App() {
   return (
     <div className="App">
       <Container>
-        <Login />
+        <InfoLog/> 
         <br />
         <User />
         <br />
-        <Logout />
       </Container>
     </div>
   );
