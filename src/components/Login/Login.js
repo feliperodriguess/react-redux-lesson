@@ -1,6 +1,6 @@
 import { Button } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
-import { updateUser } from '../../store/user/userSlice';
+import { updateUser } from '../../store/user';
 import { toast } from 'react-toastify';
 
 
@@ -36,7 +36,5 @@ const Login = ({name}) => {
     <Button onClick={handleLogin} className='mx-1'>Login</Button>
   )
 }
-
-
 
 export default Login

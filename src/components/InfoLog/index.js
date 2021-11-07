@@ -7,14 +7,14 @@ export const InfoLog = () => {
     const [name, setName] = useState('');
     return (
         <Form>
-            <h1 className="mt-5">Login</h1>
+            <h1 className="mt-5">Login Github</h1>
             <Row className="align-items-center">
                 <Col sm={6} className="my-1">
                     <Form.Control type="text" placeholder="Nome" onChange={(e) => setName(e.target.value)} />
                 </Col>
                 <Col sm={6} >
                     <Login name={name} className='mx-1'>Login</Login>
-                    <Logout className='mx-1' />
+                    <Logout name={name} className='mx-1' />
                 </Col>
             </Row>
             <hr />

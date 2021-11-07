@@ -1,12 +1,15 @@
-import React from 'react';
 import { Button } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
-import { logout } from '../../store/user/userSlice';
+import { logout } from '../../store/user';
+import {toast} from 'react-toastify'
 
-const Logout = () => {
+const Logout = ({name}) => {
   const dispatch = useDispatch()
 
   const handleLogout = () => {
+    toast.warning(`${name} deslogado`, {
+      autoClose: 3000
+  })
     dispatch(logout())
   }
 

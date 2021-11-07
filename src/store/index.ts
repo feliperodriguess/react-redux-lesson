@@ -1,10 +1,13 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit'
 import { useDispatch } from 'react-redux'
-import userReducer from './user/userSlice'
+import userReducer from './user/'
+import statusReducer from './status/'
 
 const store = configureStore({
   reducer:{
     user: userReducer,
+    status: statusReducer
+
   }
 })
 
