@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { AppDispatch, AppThunk } from '..'
+import { changeStatus, handleStatus } from '../status'
 
 const initialUserState = {
   name: '',
@@ -9,7 +10,7 @@ const initialUserState = {
   repos: 0,
   email: '',
   avatar_url: '',
-  isLogged: false
+  isLogged: false,
 }
 
 export const slice = createSlice({
@@ -21,30 +22,28 @@ export const slice = createSlice({
     },
     logout(state) {
       return { ...state, ...initialUserState }
-    }
-  }
+    },
+  },
 })
 
 export const { changeUser, logout } = slice.actions
 export default slice.reducer
 
 export const updateUser = async (name: string): Promise<AppThunk> => {
-  return (async (dispatch: AppDispatch) => {
+  return async (dispatch: AppDispatch) => {
     try {
       const response = await fetch(`https://api.github.com/users/${name}`)
       if (response.ok) {
         const responseJSON = await response.json()
         dispatch(changeUser(responseJSON))
-        return response.status
-      }
-      else {
+        dispatch(changeStatus(response.status))
+      } else {
         dispatch(changeUser(initialUserState))
-        return response.status
+        dispatch(changeStatus(response.status))
       }
-    }
-    catch (error) {
+    } catch (error) {
       dispatch(changeUser(initialUserState))
-      return 0
+      dispatch(changeStatus(0))
     }
-  })
+  }
 }

@@ -1,15 +1,19 @@
-
-.container{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
 
-.img-info{
-    width: 200px;
-    height: 200px;
-    border-radius: 100%;
+.img-info {
+  width: 200px;
+  height: 200px;
+  border-radius: 100%;
 }
 
-.text{
-    color: black;
+.div-img {
+  padding: 20px;
+}
+
+.text {
+  color: black;
+  min-width: 300px;
 }

@@ -1,21 +1,22 @@
 import './user.css'
-import { useSelector } from 'react-redux';
-import "react-toastify/dist/ReactToastify.css";
-import { ToastContainer } from "react-toastify";
-import { BsGithub} from 'react-icons/bs'
+import { useSelector } from 'react-redux'
+import 'react-toastify/dist/ReactToastify.css'
+import { ToastContainer } from 'react-toastify'
+import { BsGithub } from 'react-icons/bs'
 
 const User = () => {
-  const user = useSelector((state: any) => state.user);
+  const user = useSelector((state: any) => state.user)
 
   return (
-    <div className='container'>
-      <div className='div-img' >
-        {user.avatar_url === '' ?
-          <BsGithub className='img-info' /> :
-          <img src={user.avatar_url } className='img-info' alt=''></img>
-        }
+    <div className="container">
+      <div className="div-img">
+        {user.avatar_url === '' ? (
+          <BsGithub className="img-info" />
+        ) : (
+          <img src={user.avatar_url} className="img-info" alt=""></img>
+        )}
       </div>
-      <div className='text'>
+      <div className="text">
         <h1>Usuário: {user.name}</h1>
         <h3>Location: {user.location}</h3>
         <h3>Followers: {user.followers}</h3>
@@ -25,7 +26,7 @@ const User = () => {
         <ToastContainer />
       </div>
     </div>
-  );
+  )
 }
 
-export default User;
+export default User
